@@ -1,6 +1,7 @@
 package com.devitis.sqlite_room_androidauth;
 
 import android.arch.persistence.room.Room;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,22 +26,35 @@ public class MainActivity extends AppCompatActivity {
         employee_editText = (EditText) findViewById(R.id.employee_editText);
         all_employee_multiAutoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.all_employee_multiAutoCompleteTextView);
 
-        all_employee_button.setOnClickListener(new View.OnClickListener() {
+        dataBaseThread allEmployeeDataBaseThread = new dataBaseThread();
+        allEmployeeDataBaseThread.start();
+    }
+
+    protected void onResume() {
+
+
+        super.onResume();
+
+
+        all_employee_button.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View v) {
-                // get DB
-                AppDatabase db = App.getInstance().getDatabase();
-                // from Database obj get Dao
-                EmployeeDao employeeDao = db.employeeDao();
 
-                List<Employee> employees = employeeDao.getAll();
-                employee_editText.setText(employees.toString());
+                dataBaseThread db = new dataBaseThread();
+                employee_editText.setText(db.getEmployee().toString());
+
+
             }
         });
-
-
-
-
-
     }
+
+
 }
+
+
+
+
+
+
