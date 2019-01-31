@@ -1,3 +1,5 @@
+package com.devitis.sqlite_room_androidauth;
+
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;

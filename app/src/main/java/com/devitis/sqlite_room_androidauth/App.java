@@ -1,3 +1,5 @@
+package com.devitis.sqlite_room_androidauth;
+
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
